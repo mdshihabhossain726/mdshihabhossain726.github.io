@@ -1,6 +1,19 @@
 {
   "projects": [
     {
+      "icon": "💬",
+      "title": "Shihu AI",
+      "status": "Live",
+      "description": "A web-based AI chat assistant with user accounts, saved conversations across devices, and a clean, focused interface. Also available as the \"Ask AI\" assistant on this portfolio.",
+      "tags": [
+        "AI Chatbot",
+        "Web App",
+        "Render"
+      ],
+      "linkText": "Try it live ↗",
+      "link": "https://shihu-ai.onrender.com/chat-ui"
+    },
+    {
       "title": "Research Paper Organizer",
       "status": "In progress",
       "description": "A desktop application concept for organizing research papers and keeping academic material easier to manage.",
