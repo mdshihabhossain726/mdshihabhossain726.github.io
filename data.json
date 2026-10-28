@@ -1,0 +1,106 @@
+{
+  "projects": [
+    {
+      "title": "Research Paper Organizer",
+      "status": "In progress",
+      "description": "A desktop application concept for organizing research papers and keeping academic material easier to manage.",
+      "tags": [
+        "Python",
+        "SQLite",
+        "Desktop App"
+      ],
+      "link": "https://github.com/mdshihabhossain726/research-paper-organizer",
+      "linkText": "Find on GitHub ↗",
+      "icon": "⌕"
+    },
+    {
+      "title": "ResearchHub Database",
+      "status": "Academic project",
+      "description": "A relational database project focused on designing a structured research-management data model using SQL and PostgreSQL.",
+      "tags": [
+        "PostgreSQL",
+        "SQL",
+        "Database Design"
+      ],
+      "link": "https://github.com/mdshihabhossain726",
+      "linkText": "Find on GitHub ↗",
+      "icon": "▤"
+    },
+    {
+      "title": "Scam Message Detection",
+      "status": "Exploration",
+      "description": "An early-stage idea to study detection of suspicious calls or messages, starting with background research and responsible dataset exploration.",
+      "tags": [
+        "Python",
+        "Machine Learning",
+        "Research"
+      ],
+      "link": "#contact",
+      "linkText": "Discuss an idea ↗",
+      "icon": "⌁"
+    },
+    {
+      "icon": "＋",
+      "title": "Future AI / Data Project",
+      "status": "Coming next",
+      "description": "A space for a future project with a clear problem statement, documented methodology, reproducible results, and a public repository.",
+      "tags": [
+        "To be decided"
+      ],
+      "link": "https://github.com/mdshihabhossain726",
+      "linkText": "GitHub ↗"
+    },
+    {
+      "title": "Ein Neues Leben",
+      "status": "In progress",
+      "description": "A visual novel combining interactive storytelling with German language learning.",
+      "tags": [
+        "Ren'Py",
+        "GitHub",
+        "Python scripting"
+      ],
+      "link": "https://github.com/mdshihabhossain726/Ein-Neues-Leben-Portfolio",
+      "linkText": "Find on GitHub ↗",
+      "icon": "🎮"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Programming",
+      "items": [
+        "Python",
+        "Java",
+        "SQL",
+        "C++",
+        "C"
+      ]
+    },
+    {
+      "group": "Data & Databases",
+      "items": [
+        "PostgreSQL",
+        "Relational Design",
+        "Data Analysis (learning)"
+      ]
+    },
+    {
+      "group": "Developer Tools",
+      "items": [
+        "Git",
+        "GitHub",
+        "VS Code"
+      ]
+    },
+    {
+      "group": "Core Foundations",
+      "items": [
+        "OOP",
+        "Data Structures",
+        "Operating Systems",
+        "DBMS",
+        "SDP"
+      ]
+    }
+  ],
+  "research": []
+}

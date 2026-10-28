@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Portfolio Admin</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#10111a;--card:#1a1c2a;--line:#2e3148;--tx:#e8e9f3;--ac:#7c8cff}
+*{box-sizing:border-box}body{margin:0;font:15px system-ui,sans-serif;background:var(--bg);color:var(--tx);padding:20px;max-width:820px;margin-inline:auto}
+h1{font-size:1.3rem}input,textarea{width:100%;padding:8px;margin:3px 0 10px;background:#0d0e16;color:var(--tx);border:1px solid var(--line);border-radius:8px;font:inherit}
+textarea{min-height:70px}label{font-size:.78rem;opacity:.7}
+button{padding:8px 14px;border:0;border-radius:8px;background:var(--ac);color:#10111a;font-weight:700;cursor:pointer;margin:2px}
+button.g{background:var(--line);color:var(--tx)}button.d{background:#ff6b7a}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
+.tabs{display:flex;gap:6px;margin:14px 0}.tabs button.on{outline:2px solid #fff}
+summary{cursor:pointer;font-weight:600}#msg{position:sticky;bottom:10px;padding:10px;border-radius:8px;background:#222542;display:none}
+</style></head><body>
+<h1>Portfolio Admin</h1>
+<div class="card" id="login">
+  <label>GitHub token (fine-grained, only this repo, Contents: read &amp; write)</label>
+  <input id="tok" type="password" placeholder="github_pat_...">
+  <label>Repository</label><input id="repo" value="mdshihabhossain726/mdshihabhossain726.github.io">
+  <label>Branch</label><input id="br" value="main">
+  <button onclick="load()">Load data</button>
+</div>
+<div id="app" style="display:none">
+  <div class="tabs" id="tabs"></div><div id="list"></div>
+  <button onclick="add()">+ Add new</button> <button onclick="save()">Save to GitHub</button>
+</div>
+<div id="msg"></div>
+<script>
+var S={projects:{label:"Projects",title:"title",f:[["icon","Icon (emoji or symbol, e.g. ⌕ ▤ 🎮)"],["title","Title"],["status","Status (In progress, Academic project…)"],["description","Description","t"],["tags","Tags (comma separated)","a"],["link","Link URL"],["linkText","Link text"]]},
+skills:{label:"Skills",title:"group",f:[["group","Group name"],["items","Skills (comma separated)","a"]]},
+research:{label:"Research Experience",title:"title",f:[["icon","Icon (emoji or symbol)"],["title","Research title"],["role","Your role"],["org","Organization / supervisor"],["period","Period (e.g. 2026)"],["description","Description","t"],["link","Link (paper, repo)"]]}};
+var D={},sha="",cur="projects",$=function(i){return document.getElementById(i)};
+function msg(t){var m=$("msg");m.textContent=t;m.style.display="block"}
+function api(){return"https://api.github.com/repos/"+$("repo").value.trim()+"/contents/data.json"}
+function hdr(){return{Authorization:"Bearer "+$("tok").value.trim(),Accept:"application/vnd.github+json"}}
+function load(){fetch(api()+"?ref="+$("br").value.trim(),{headers:hdr()}).then(function(r){if(!r.ok)throw new Error("Load failed ("+r.status+"). Check token/repo/data.json exists.");return r.json()})
+.then(function(j){sha=j.sha;D=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));["projects","skills","research"].forEach(function(k){D[k]=D[k]||[]});
+$("login").style.display="none";$("app").style.display="block";tabs();draw();msg("Loaded.")}).catch(function(e){msg(e.message)})}
+function tabs(){$("tabs").innerHTML="";Object.keys(S).forEach(function(k){var b=document.createElement("button");b.textContent=S[k].label;b.className="g"+(k==cur?" on":"");b.onclick=function(){cur=k;tabs();draw()};$("tabs").appendChild(b)})}
+function draw(){var L=$("list");L.innerHTML="";D[cur].forEach(function(it,i){var d=document.createElement("details");d.className="card";
+var s=document.createElement("summary");s.textContent=(it[S[cur].title]||"(untitled)");d.appendChild(s);
+S[cur].f.forEach(function(f){var k=f[0],l=document.createElement("label");l.textContent=f[1];var e=document.createElement(f[2]=="t"?"textarea":"input");
+e.value=f[2]=="a"?(it[k]||[]).join(", "):(it[k]||"");
+e.oninput=function(){it[k]=f[2]=="a"?e.value.split(",").map(function(x){return x.trim()}).filter(Boolean):e.value;if(k==S[cur].title)s.textContent=e.value||"(untitled)"};d.appendChild(l);d.appendChild(e)});
+[["↑",-1],["↓",1]].forEach(function(m){var b=document.createElement("button");b.className="g";b.textContent=m[0];b.onclick=function(){var j=i+m[1];if(j<0||j>=D[cur].length)return;var a=D[cur];var t=a[i];a[i]=a[j];a[j]=t;draw()};d.appendChild(b)});
+var x=document.createElement("button");x.className="d";x.textContent="Delete";x.onclick=function(){if(confirm("Delete this entry?")){D[cur].splice(i,1);draw()}};d.appendChild(x);L.appendChild(d)})}
+function add(){D[cur].unshift({});draw();var f=document.querySelector("#list details");if(f)f.open=true}
+function save(){var body={message:"Update portfolio data via admin",content:btoa(unescape(encodeURIComponent(JSON.stringify(D,null,2)))),sha:sha,branch:$("br").value.trim()};
+msg("Saving…");fetch(api(),{method:"PUT",headers:hdr(),body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error("Save failed ("+r.status+").");return r.json()})
+.then(function(j){sha=j.content.sha;msg("Saved! Site will update in ~1 minute.")}).catch(function(e){msg(e.message)})}
+</script></body></html>

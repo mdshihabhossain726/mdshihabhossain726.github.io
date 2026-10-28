@@ -7,6 +7,8 @@
   <meta name="description" content="Portfolio of Md Shihab Hossain — Computer Science and Engineering student interested in AI, Data Science, software development, and research." />
   <meta name="theme-color" content="#10111a" />
   <title>Md Shihab Hossain | CSE • AI • Data Science</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script src="portfolio.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -200,6 +202,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#research">Research</a>
+        <a href="#research-experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
@@ -278,13 +281,25 @@
       </div>
     </section>
 
+    <section id="research-experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><p class="eyebrow mono">Hands-on work</p><h2>Research experience</h2></div>
+          <p class="section-intro">Research projects, papers, and collaborations. New entries are added from my admin panel.</p>
+        </div>
+        <div class="research-grid" id="research-experience-list">
+          <article class="card research-card reveal"><div class="research-icon">✦</div><div><div class="number mono">COMING SOON</div><h3>Research experience</h3><p>Research experience will be added here soon.</p></div></article>
+        </div>
+      </div>
+    </section>
+
     <section id="projects">
       <div class="container">
         <div class="section-head reveal">
           <div><p class="eyebrow mono">Selected work</p><h2>Projects in progress</h2></div>
           <p class="section-intro">A growing collection of coursework and personal projects. Replace each repository link with the exact public repo when ready.</p>
         </div>
-        <div class="project-grid">
+        <div class="project-grid" id="projects-grid">
           <article class="card project-card reveal">
             <div class="project-top"><div class="project-symbol">⌕</div><span class="project-status">In progress</span></div>
             <h3>Research Paper Organizer</h3>
@@ -330,7 +345,7 @@
             <h3>My approach</h3>
             <p>I’m focused on building strong fundamentals first, then applying them in projects. I value readable code, clear documentation, and learning by doing.</p>
           </article>
-          <div class="skill-groups">
+          <div class="skill-groups" id="skills-grid">
             <article class="card skill-group reveal"><h3>Programming</h3><div class="skill-pills"><span>Python</span><span>Java</span><span>SQL</span><span>C++</span><span>C</span></div></article>
             <article class="card skill-group reveal"><h3>Data & Databases</h3><div class="skill-pills"><span>PostgreSQL</span><span>Relational Design</span><span>Data Analysis · Learning</span></div></article>
             <article class="card skill-group reveal"><h3>Developer Tools</h3><div class="skill-pills"><span>Git</span><span>GitHub</span><span>VS Code</span></div></article>
