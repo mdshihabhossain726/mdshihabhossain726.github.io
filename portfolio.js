@@ -9,7 +9,7 @@
   };
   var spans = function (a) { return (a || []).map(function (t) { return "<span>" + esc(t) + "</span>"; }).join(""); };
   var link = function (u, t) {
-    if (!u) return "";
+    if (!/^(https?:\/\/|#|mailto:)/i.test(String(u || "").trim())) return "";
     var ext = u.charAt(0) !== "#" ? ' target="_blank" rel="noopener noreferrer"' : "";
     return '<a class="text-link" href="' + esc(u) + '"' + ext + ">" + esc(t || "Link ↗") + "</a>";
   };

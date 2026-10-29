@@ -127,5 +127,44 @@
       "description": "Exploring the psychological impact of AI on today's youth—from academic stress and flawed detectors to synthetic media trauma and chatbot reliance. Our initiative empowers young people with digital hygiene frameworks and advocates for human-centric AI solutions that protect mental wellbeing.",
       "link": "Will be added soon"
     }
+  ],
+  "interests": [
+    {
+      "icon": "⌘",
+      "title": "Artificial Intelligence",
+      "description": "Understanding AI methods and how intelligent systems can support useful applications."
+    },
+    {
+      "icon": "▥",
+      "title": "Data Science",
+      "description": "Learning how to prepare, analyze, and interpret data to answer meaningful questions."
+    },
+    {
+      "icon": "◎",
+      "title": "AI & Youth Well-being",
+      "description": "Exploring questions around AI’s impact on young people’s mental health and digital experiences."
+    }
+  ],
+  "education": [
+    {
+      "label": "CURRENT · UNDERGRADUATE",
+      "title": "BSc in Computer Science and Engineering",
+      "description": "Bangladesh University of Business and Technology (BUBT), Bangladesh."
+    },
+    {
+      "label": "ACADEMIC FOCUS",
+      "title": "Computer Science foundations",
+      "description": "Programming, algorithms, databases, software development, and related coursework."
+    },
+    {
+      "label": "RESEARCH DIRECTION",
+      "title": "AI & Data Science",
+      "description": "Building project experience and research skills through independent study and practical work."
+    },
+    {
+      "label": "LONG-TERM GOAL",
+      "title": "Graduate study & research",
+      "description": "Preparing for suitable international master’s programmes and research opportunities by strengthening academic foundations, projects, and English proficiency."
+    }
   ]
 }
