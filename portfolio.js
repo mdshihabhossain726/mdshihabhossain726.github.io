@@ -1,5 +1,5 @@
 /* Renders data.json into the site using the site's own card classes.
-   Containers: #projects-grid, #skills-grid, #research-experience-list.
+   Containers: #projects-grid, #skills-grid, #interests-grid, #education-timeline, #research-experience-list.
    If data.json cannot load, the static HTML already in the page stays as a fallback. */
 (function () {
   var esc = function (s) {
@@ -27,6 +27,18 @@
         var s = document.getElementById("skills-grid");
         if (s && d.skills && d.skills.length) s.innerHTML = d.skills.map(function (g) {
           return '<article class="card skill-group reveal visible"><h3>' + esc(g.group) + '</h3><div class="skill-pills">' + spans(g.items) + "</div></article>";
+        }).join("");
+
+        var ri = document.getElementById("interests-grid");
+        if (ri && d.interests && d.interests.length) ri.innerHTML = d.interests.map(function (x, i) {
+          return '<article class="card research-card reveal visible"><div class="research-icon">' + esc(x.icon || "◎") + '</div><div><div class="number mono">AREA ' +
+            (i < 9 ? "0" : "") + (i + 1) + "</div><h3>" + esc(x.title) + "</h3><p>" + esc(x.description) + "</p></div></article>";
+        }).join("");
+
+        var ed = document.getElementById("education-timeline");
+        if (ed && d.education && d.education.length) ed.innerHTML = d.education.map(function (x) {
+          return '<article class="card timeline-item reveal visible"><div class="meta">' + esc(String(x.label || "").toUpperCase()) + "</div><h3>" +
+            esc(x.title) + "</h3><p>" + esc(x.description) + "</p></article>";
         }).join("");
 
         var r = document.getElementById("research-experience-list");

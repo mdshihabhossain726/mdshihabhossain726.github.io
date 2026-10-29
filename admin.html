@@ -10,7 +10,7 @@ textarea{min-height:70px}label{font-size:.78rem;opacity:.7}
 button{padding:8px 14px;border:0;border-radius:8px;background:var(--ac);color:#10111a;font-weight:700;cursor:pointer;margin:2px}
 button.g{background:var(--line);color:var(--tx)}button.d{background:#ff6b7a}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0}
-.tabs{display:flex;gap:6px;margin:14px 0}.tabs button.on{outline:2px solid #fff}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}.tabs button.on{outline:2px solid #fff}
 summary{cursor:pointer;font-weight:600}#msg{position:sticky;bottom:10px;padding:10px;border-radius:8px;background:#222542;display:none}
 </style></head><body>
 <h1>Portfolio Admin</h1>
@@ -29,13 +29,15 @@ summary{cursor:pointer;font-weight:600}#msg{position:sticky;bottom:10px;padding:
 <script>
 var S={projects:{label:"Projects",title:"title",f:[["icon","Icon (emoji or symbol, e.g. ⌕ ▤ 🎮)"],["title","Title"],["status","Status (In progress, Academic project…)"],["description","Description","t"],["tags","Tags (comma separated)","a"],["link","Link URL"],["linkText","Link text"]]},
 skills:{label:"Skills",title:"group",f:[["group","Group name"],["items","Skills (comma separated)","a"]]},
-research:{label:"Research Experience",title:"title",f:[["icon","Icon (emoji or symbol)"],["title","Research title"],["role","Your role"],["org","Organization / supervisor"],["period","Period (e.g. 2026)"],["description","Description","t"],["link","Link (paper, repo)"]]}};
+research:{label:"Research Experience",title:"title",f:[["icon","Icon (emoji or symbol)"],["title","Research title"],["role","Your role"],["org","Organization / supervisor"],["period","Period (e.g. 2026)"],["description","Description","t"],["link","Link (paper, repo)"]]},
+interests:{label:"Research Interests",title:"title",f:[["icon","Icon (e.g. ⌘ ▥ ◎ 🔬)"],["title","Area title"],["description","Description","t"]]},
+education:{label:"Education & Direction",title:"title",f:[["label","Label (e.g. CURRENT · UNDERGRADUATE)"],["title","Title"],["description","Description","t"]]}};
 var D={},sha="",cur="projects",$=function(i){return document.getElementById(i)};
 function msg(t){var m=$("msg");m.textContent=t;m.style.display="block"}
 function api(){return"https://api.github.com/repos/"+$("repo").value.trim()+"/contents/data.json"}
 function hdr(){return{Authorization:"Bearer "+$("tok").value.trim(),Accept:"application/vnd.github+json"}}
 function load(){fetch(api()+"?ref="+$("br").value.trim(),{headers:hdr()}).then(function(r){if(!r.ok)throw new Error("Load failed ("+r.status+"). Check token/repo/data.json exists.");return r.json()})
-.then(function(j){sha=j.sha;D=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));["projects","skills","research"].forEach(function(k){D[k]=D[k]||[]});
+.then(function(j){sha=j.sha;D=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));Object.keys(S).forEach(function(k){D[k]=D[k]||[]});
 $("login").style.display="none";$("app").style.display="block";tabs();draw();msg("Loaded.")}).catch(function(e){msg(e.message)})}
 function tabs(){$("tabs").innerHTML="";Object.keys(S).forEach(function(k){var b=document.createElement("button");b.textContent=S[k].label;b.className="g"+(k==cur?" on":"");b.onclick=function(){cur=k;tabs();draw()};$("tabs").appendChild(b)})}
 function draw(){var L=$("list");L.innerHTML="";D[cur].forEach(function(it,i){var d=document.createElement("details");d.className="card";
@@ -45,7 +47,7 @@ e.value=f[2]=="a"?(it[k]||[]).join(", "):(it[k]||"");
 e.oninput=function(){it[k]=f[2]=="a"?e.value.split(",").map(function(x){return x.trim()}).filter(Boolean):e.value;if(k==S[cur].title)s.textContent=e.value||"(untitled)"};d.appendChild(l);d.appendChild(e)});
 [["↑",-1],["↓",1]].forEach(function(m){var b=document.createElement("button");b.className="g";b.textContent=m[0];b.onclick=function(){var j=i+m[1];if(j<0||j>=D[cur].length)return;var a=D[cur];var t=a[i];a[i]=a[j];a[j]=t;draw()};d.appendChild(b)});
 var x=document.createElement("button");x.className="d";x.textContent="Delete";x.onclick=function(){if(confirm("Delete this entry?")){D[cur].splice(i,1);draw()}};d.appendChild(x);L.appendChild(d)})}
-function add(){D[cur].unshift({});draw();var f=document.querySelector("#list details");if(f)f.open=true}
+function add(){var end=(cur=="interests"||cur=="education");D[cur][end?"push":"unshift"]({});draw();var ds=document.querySelectorAll("#list details");var f=ds[end?ds.length-1:0];if(f){f.open=true;f.scrollIntoView({block:"center"})}}
 function save(){var body={message:"Update portfolio data via admin",content:btoa(unescape(encodeURIComponent(JSON.stringify(D,null,2)))),sha:sha,branch:$("br").value.trim()};
 msg("Saving…");fetch(api(),{method:"PUT",headers:hdr(),body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error("Save failed ("+r.status+").");return r.json()})
 .then(function(j){sha=j.content.sha;msg("Saved! Site will update in ~1 minute.")}).catch(function(e){msg(e.message)})}
