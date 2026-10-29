@@ -14,6 +14,19 @@
       "link": "https://shihu-ai.onrender.com/chat-ui"
     },
     {
+      "title": "Ein Neues Leben",
+      "status": "In progress",
+      "description": "A visual novel combining interactive storytelling with German language learning.",
+      "tags": [
+        "Ren'Py",
+        "GitHub",
+        "Python scripting"
+      ],
+      "link": "https://github.com/mdshihabhossain726/Ein-Neues-Leben-Portfolio",
+      "linkText": "Find on GitHub ↗",
+      "icon": "🎮"
+    },
+    {
       "title": "Research Paper Organizer",
       "status": "In progress",
       "description": "A desktop application concept for organizing research papers and keeping academic material easier to manage.",
@@ -62,19 +75,6 @@
       ],
       "link": "https://github.com/mdshihabhossain726",
       "linkText": "GitHub ↗"
-    },
-    {
-      "title": "Ein Neues Leben",
-      "status": "In progress",
-      "description": "A visual novel combining interactive storytelling with German language learning.",
-      "tags": [
-        "Ren'Py",
-        "GitHub",
-        "Python scripting"
-      ],
-      "link": "https://github.com/mdshihabhossain726/Ein-Neues-Leben-Portfolio",
-      "linkText": "Find on GitHub ↗",
-      "icon": "🎮"
     }
   ],
   "skills": [
