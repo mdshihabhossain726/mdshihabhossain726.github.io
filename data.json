@@ -40,7 +40,7 @@
       "icon": "⌕"
     },
     {
-      "title": "ResearchHub Database",
+      "title": "ResearchHub",
       "status": "Academic project",
       "description": "A relational database project focused on designing a structured research-management data model using SQL and PostgreSQL.",
       "tags": [
@@ -48,7 +48,7 @@
         "SQL",
         "Database Design"
       ],
-      "link": "https://github.com/mdshihabhossain726",
+      "link": "https://github.com/mdshihabhossain726/Researchhub",
       "linkText": "Find on GitHub ↗",
       "icon": "▤"
     },
